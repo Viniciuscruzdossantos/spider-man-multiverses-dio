@@ -1,0 +1,192 @@
+@import url('reset.css');
+@import url('global.css');
+@import url('components/_navigator.css');
+@import url('components/_pills.css');
+@import url('components/_link-button.css');
+@import url('components/_gallery.css');
+
+.s-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-flow: row nowrap; 
+  background-color: #000; /* era "aqua": aparecia se o vídeo demorasse a carregar */
+}
+
+.s-wrapper video{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* o vídeo preenche a tela sem deformar, inclusive no celular */
+}
+
+.s-wrapper .s-left-column {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  padding-right: 50px;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.s-wrapper .s-main-content{
+  min-height: 100vh;
+  width: 100%;
+  padding-left: 130px;
+  padding-right: 20px;
+  box-sizing: border-box; /* o padding não pode somar à largura de 100% (causava corte no celular) */
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.s-wrapper .s-main-content__top {
+  flex: 1 0 auto;
+  min-height: 80vh; /* antes era altura fixa: a galeria cobria a sinopse em telas baixas */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.s-wrapper .s-main-content__bottom{
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.s-wrapper .s-main-content .s-logo img{
+  max-width: 100%;
+  height: auto;
+  margin-top: 50px;
+  margin-left: 0;
+  margin-bottom: 30px;
+}
+
+.s-wrapper .s-main-content__top .s-description{
+  background-color: rgba(0,0,0,.7);
+  max-width: 50%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.s-wrapper .s-main-content__top .s-description .s-description__text p{
+  color: white;
+  line-height: 170%;
+}
+
+.s-wrapper .s-main-content__top .s-description .pills{
+  margin-bottom: 20px;
+}
+
+.s-wrapper .s-main-content .s-links{
+  padding: 20px;
+  padding-left: 0;
+}
+
+.s-wrapper .s-main-content .s-links ul{
+  display: flex;
+  flex-direction: row;
+}
+
+.s-spiderman-01-01 {
+  background-image: url('../images/spiderman-tobey/movie-01/background.png');
+  background-size:cover;
+}
+
+.s-spiderman-01-02 {
+  background-image: url('../images/spiderman-tobey/movie-02/background.png');
+  background-size: cover;
+}
+
+.s-spiderman-01-03 {
+  background-image: url('../images/spiderman-tobey/movie-03/background.png');
+  background-size: cover;
+}
+
+/* ---------- Melhorias de acessibilidade e responsividade ---------- */
+
+/* Rolagem horizontal da galeria quando as imagens não cabem na tela */
+.s-wrapper .gallery {
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.s-wrapper .gallery ul li {
+  flex: 0 0 auto;
+}
+
+/* Foco visível para quem navega pelo teclado */
+a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, .6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .s-wrapper .s-left-column {
+    width: 70px;
+    padding-right: 20px;
+  }
+
+  .navigator ul li {
+    margin: 40px 0;
+  }
+
+  .navigator ul li a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navigator .navigator__icon img {
+    width: 40px;
+  }
+
+  .s-wrapper .s-main-content {
+    padding-left: 80px;
+    padding-right: 12px;
+  }
+
+  .s-wrapper .s-main-content__top {
+    min-height: auto;
+  }
+
+  .s-wrapper .s-main-content .s-logo img {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .s-wrapper .s-main-content__top .s-description {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .pills ul {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pills ul li,
+  .pills ul li:first-child {
+    margin: 0;
+    font-size: .85rem;
+  }
+
+  .gallery ul li a img {
+    max-height: 140px;
+    width: auto;
+  }
+}
